@@ -68,6 +68,18 @@ Cycles are highlighted in red in the SVG:
 
 ![Matrix with a cycle highlighted](docs/img/errors.svg)
 
+## Choosing what each box shows
+
+By default a box shows the unit id. `--labels` takes a list of fields, one per line: `unit_id`, `unit_type`, `subtype`, `description`, or **any extra column** you add to `units.csv` (a `period`, a `phase`, a date range...).
+
+```bash
+harris-matrix render examples/demo --labels unit_id,subtype,period -o matrix.svg
+```
+
+![Matrix with unit id, subtype and period in each box](docs/img/demo-labels.svg)
+
+From Python: `render_svg(project, labels=["unit_id", "subtype", "period"])`. Units merged by `same_as` show their distinct values joined (`A / B`). An unknown field is rejected with the list of available ones.
+
 ## A larger example
 
 [`examples/complex`](examples/complex) is a 34-unit sequence (Iron Age ditch, Roman building, medieval reoccupation, modern disturbance) using every relation type: fills and cuts, abutting walls, a bonded corner, a doubtful `same_as` between two sectors, and a `later_than` link without physical contact. Dashed and dotted lines mark probable and doubtful relations; edges spanning several levels are routed around intermediate units.

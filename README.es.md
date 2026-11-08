@@ -25,6 +25,8 @@ Tipos de relación: `covers` (cubre), `cuts` (corta), `fills` (rellena), `rests_
 
 Verificación (R01–R06, R10–R16, R18): duplicados, referencias inexistentes, vocabulario, tipos admitidos, ciclos, cortes sin relleno, unidades huérfanas, relaciones redundantes. Los ciclos salen en rojo en el SVG. Devuelve código de salida distinto de cero si hay errores; `--json` para salida automática.
 
+Qué se muestra en cada cuadro: por defecto el identificador. Con `--labels unit_id,subtype,period` se imprimen esos campos, uno por línea; vale cualquier columna estándar o extra de `units.csv` (por ejemplo `period` para la cronología). Desde Python: `render_svg(project, labels=[...])`.
+
 Principios: se registran hechos, el orden y el gráfico se derivan; toda relación lleva certeza; la ausencia de relación no implica contemporaneidad.
 
 Desde Python:

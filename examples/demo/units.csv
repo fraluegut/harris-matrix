@@ -1,13 +1,13 @@
-unit_id,unit_type,subtype,description
-1,deposit,topsoil,Surface topsoil
-2,deposit,collapse,Roof-tile collapse
-3,structure,wall,Standing wall M1
-4,interface,pit,Robber pit
-5,deposit,fill,Fill of the robber pit
-6,deposit,floor,Mortar floor
-7,deposit,bedding,Floor bedding
-8,interface,trench,Foundation trench of M1
-9,deposit,fill,Fill of the foundation trench
-10,deposit,occupation,Occupation layer (area A)
-11,deposit,natural,Natural sterile clay
-12,deposit,occupation,Occupation layer (area B)
+unit_id,unit_type,subtype,period,description
+1,deposit,topsoil,Modern,Surface topsoil
+2,deposit,collapse,Late Roman,Roof-tile collapse
+3,structure,wall,Roman,Standing wall M1
+4,interface,pit,Medieval,Robber pit
+5,deposit,fill,Medieval,Fill of the robber pit
+6,deposit,floor,Roman,Mortar floor
+7,deposit,bedding,Roman,Floor bedding
+8,interface,trench,Roman,Foundation trench of M1
+9,deposit,fill,Roman,Fill of the foundation trench
+10,deposit,occupation,Iron Age,Occupation layer (area A)
+11,deposit,natural,Natural,Natural sterile clay
+12,deposit,occupation,Iron Age,Occupation layer (area B)

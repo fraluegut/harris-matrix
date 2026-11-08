@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257 1136" width="257" height="1136">
+<style>.node rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
+.node.interface rect { fill: #eef3fb }
+.node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
+.node.virtual rect { stroke-dasharray: 4 3 }
+.node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.node text.extra { font-size: 11px; fill: #555 }
+.edge { stroke: #222; stroke-width: 1.5; fill: none }
+.error rect { stroke: #c00; stroke-width: 3 }
+.edge.error { stroke: #c00 }</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<g id="edges">
+<polyline class="edge" data-certainty="certain" points="128,98 184,156"/>
+<polyline class="edge" data-certainty="certain" points="128,98 72,156"/>
+<polyline class="edge" data-certainty="certain" points="184,224 184,282"/>
+<polyline class="edge" data-certainty="certain" points="128,602 128,660"/>
+<polyline class="edge" data-certainty="certain" points="72,350 128,408"/>
+<polyline class="edge" data-certainty="certain" points="72,224 72,282"/>
+<polyline class="edge" data-certainty="certain" points="184,350 128,408"/>
+<polyline class="edge" data-certainty="certain" points="128,476 128,534"/>
+<polyline class="edge" data-certainty="certain" points="128,854 128,912"/>
+<polyline class="edge" data-certainty="certain" points="128,728 128,786"/>
+<polyline class="edge" data-certainty="certain" points="128,980 128,1038"/>
+</g>
+<g id="units">
+<g id="unit-1" class="node deposit" data-type="deposit"><title>1: Surface topsoil</title><rect x="86" y="30" width="84" height="68" rx="3"/><text x="128" y="54">1</text><text class="extra" x="128" y="69">topsoil</text><text class="extra" x="128" y="84">Modern</text></g>
+<g id="unit-2" class="node deposit" data-type="deposit"><title>2: Roof-tile collapse</title><rect x="142" y="156" width="85" height="68" rx="3"/><text x="184" y="180">2</text><text class="extra" x="184" y="195">collapse</text><text class="extra" x="184" y="210">Late Roman</text></g>
+<g id="unit-3" class="node structure" data-type="structure"><title>3: Standing wall M1</title><rect x="86" y="534" width="84" height="68" rx="3"/><text x="128" y="558">3</text><text class="extra" x="128" y="573">wall</text><text class="extra" x="128" y="588">Roman</text></g>
+<g id="unit-4" class="node interface" data-type="interface"><title>4: Robber pit</title><rect x="30" y="282" width="84" height="68" rx="19"/><text x="72" y="306">4</text><text class="extra" x="72" y="321">pit</text><text class="extra" x="72" y="336">Medieval</text></g>
+<g id="unit-5" class="node deposit" data-type="deposit"><title>5: Fill of the robber pit</title><rect x="30" y="156" width="84" height="68" rx="3"/><text x="72" y="180">5</text><text class="extra" x="72" y="195">fill</text><text class="extra" x="72" y="210">Medieval</text></g>
+<g id="unit-6" class="node deposit" data-type="deposit"><title>6: Mortar floor</title><rect x="142" y="282" width="84" height="68" rx="3"/><text x="184" y="306">6</text><text class="extra" x="184" y="321">floor</text><text class="extra" x="184" y="336">Roman</text></g>
+<g id="unit-7" class="node deposit" data-type="deposit"><title>7: Floor bedding</title><rect x="86" y="408" width="84" height="68" rx="3"/><text x="128" y="432">7</text><text class="extra" x="128" y="447">bedding</text><text class="extra" x="128" y="462">Roman</text></g>
+<g id="unit-8" class="node interface" data-type="interface"><title>8: Foundation trench of M1</title><rect x="86" y="786" width="84" height="68" rx="19"/><text x="128" y="810">8</text><text class="extra" x="128" y="825">trench</text><text class="extra" x="128" y="840">Roman</text></g>
+<g id="unit-9" class="node deposit" data-type="deposit"><title>9: Fill of the foundation trench</title><rect x="86" y="660" width="84" height="68" rx="3"/><text x="128" y="684">9</text><text class="extra" x="128" y="699">fill</text><text class="extra" x="128" y="714">Roman</text></g>
+<g id="unit-10-12" class="node deposit" data-type="deposit"><title>10: Occupation layer (area A); 12: Occupation layer (area B)</title><rect x="86" y="912" width="85" height="68" rx="3"/><text x="128" y="936">10 = 12</text><text class="extra" x="128" y="951">occupation</text><text class="extra" x="128" y="966">Iron Age</text></g>
+<g id="unit-11" class="node deposit" data-type="deposit"><title>11: Natural sterile clay</title><rect x="86" y="1038" width="84" height="68" rx="3"/><text x="128" y="1062">11</text><text class="extra" x="128" y="1077">natural</text><text class="extra" x="128" y="1092">Natural</text></g>
+</g>
+</svg>

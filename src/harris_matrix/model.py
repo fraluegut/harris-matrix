@@ -36,6 +36,9 @@ class Unit:
     description: str = ""
     subtype: str = ""
     row: int = 0
+    # Every column of the CSV row (including custom ones such as `period`),
+    # so any of them can be shown in the matrix.
+    attributes: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -79,7 +82,7 @@ def load_project(folder: str | Path) -> Project:
     project = Project()
     for n, r in _read(base / "units.csv", ("unit_id", "unit_type")):
         project.units.append(
-            Unit(r["unit_id"], r["unit_type"], r.get("description", ""), r.get("subtype", ""), n)
+            Unit(r["unit_id"], r["unit_type"], r.get("description", ""), r.get("subtype", ""), n, dict(r))
         )
     for n, r in _read(base / "relations.csv", ("from_unit", "type", "to_unit")):
         origin, kind, target = r["from_unit"], r["type"], r["to_unit"]

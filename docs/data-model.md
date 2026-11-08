@@ -110,7 +110,7 @@ Datings are propagated through the graph. Spatial rules are warnings, with confi
 
 ## 10. Graphical output (`render`)
 
-Editable SVG: one node per unit (or `same_as` group), shape by type, rows by sequence level, stroke by certainty (solid, dashed, dotted), cycles in red. Nodes have `id="unit-1045"` and `data-type`; styles are embedded. Planned: optional phase bands, named layers, `data-phase`, DOT, GraphML, and a CSV with the computed order. The SVG is output only.
+Editable SVG: the fields printed in each node are configurable (`--labels`; standard fields or any extra column of `units.csv`). One node per unit (or `same_as` group), shape by type, rows by sequence level, stroke by certainty (solid, dashed, dotted), cycles in red. Nodes have `id="unit-1045"` and `data-type`; styles are embedded. Planned: optional phase bands, named layers, `data-phase`, DOT, GraphML, and a CSV with the computed order. The SVG is output only.
 
 ## 11. Files and compatibility
 

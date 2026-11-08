@@ -61,6 +61,18 @@ class RenderTest(unittest.TestCase):
         self.assertIn("unit-1", ids)
         self.assertIn("unit-10-12", ids)  # merged same_as units
 
+    def test_labels_show_extra_fields(self):
+        project = load_project(EXAMPLES / "demo")
+        svg = render_svg(project, labels=["unit_id", "subtype", "period"])
+        self.assertIn(">Late Roman<", svg)
+        self.assertIn(">collapse<", svg)
+        ET.fromstring(svg)  # still valid XML
+        self.assertIn(">Iron Age<", render_svg(project, labels=["unit_id", "period"]))  # merged 10 = 12: one value
+
+    def test_unknown_label_is_rejected(self):
+        with self.assertRaises(ValueError):
+            render_svg(load_project(EXAMPLES / "demo"), labels=["nonsense"])
+
     def test_bonded_units_share_a_row(self):
         root = ET.fromstring(render_svg(load_project(EXAMPLES / "bizarre")))
         y = {

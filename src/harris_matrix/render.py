@@ -7,7 +7,8 @@ from xml.sax.saxutils import escape, quoteattr
 from .model import TEMPORAL, Project, natural_key
 from .verify import find_cycles, temporal_graph
 
-WIDTH, HEIGHT, GAP_X, GAP_Y, MARGIN = 84, 38, 28, 58, 30
+WIDTH, BASE_HEIGHT, LINE, GAP_X, GAP_Y, MARGIN = 84, 38, 15, 28, 58, 30
+KNOWN_FIELDS = ("unit_id", "unit_type", "subtype", "description")
 DASH = {"certain": "", "probable": "7 4", "doubtful": "2 4"}
 STRENGTH = {"certain": 3, "probable": 2, "doubtful": 1}
 
@@ -17,6 +18,7 @@ STYLE = """
 .node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
 .node.virtual rect { stroke-dasharray: 4 3 }
 .node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.node text.extra { font-size: 11px; fill: #555 }
 .edge { stroke: #222; stroke-width: 1.5; fill: none }
 .error rect { stroke: #c00; stroke-width: 3 }
 .edge.error { stroke: #c00 }
@@ -70,8 +72,30 @@ def _reduce(edges):
     return {a: {b for b in bs if not reaches(a, b, (a, b))} for a, bs in edges.items()}
 
 
-def render_svg(project: Project, highlight_errors: bool = True) -> str:
-    """Return the Harris matrix as an SVG document (later units on top)."""
+def _value(unit, field: str) -> str:
+    return unit.attributes.get(field) or (getattr(unit, field, "") if field in KNOWN_FIELDS else "")
+
+
+def available_fields(project: Project) -> list[str]:
+    """Fields that can be shown in the nodes: the standard ones plus any custom CSV column."""
+    custom = {k for u in project.units for k in u.attributes if k not in KNOWN_FIELDS}
+    return list(KNOWN_FIELDS) + sorted(custom)
+
+
+def render_svg(
+    project: Project, highlight_errors: bool = True, labels: tuple[str, ...] | list[str] = ("unit_id",)
+) -> str:
+    """Return the Harris matrix as an SVG document (later units on top).
+
+    `labels` lists the fields printed in each node, one per line: `unit_id`,
+    `unit_type`, `subtype`, `description` or any custom column of `units.csv`
+    (e.g. `period`). Units merged by `same_as` show their distinct values joined.
+    """
+    unknown = [f for f in labels if f not in available_fields(project)]
+    if unknown:
+        raise ValueError(
+            f"unknown label field(s): {', '.join(unknown)}; available: {', '.join(available_fields(project))}"
+        )
     rep, edges = temporal_graph(project)
     nodes = sorted(edges, key=natural_key)
     bonded = [
@@ -86,7 +110,23 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
     members = {n: [u for u in project.units if rep[u.unit_id] == n] for n in nodes}
     label = {n: " = ".join(sorted({u.unit_id for u in members[n]}, key=natural_key)) for n in nodes}
     kind = {n: members[n][0].unit_type for n in nodes}
-    width = {n: max(WIDTH, 9 * len(label[n]) + 20) for n in nodes}
+
+    def lines_of(n: str) -> list[str]:
+        out = []
+        for field in labels:
+            values = list(dict.fromkeys(v for u in members[n] if (v := _value(u, field))))
+            if field == "unit_id":
+                out.append(" = ".join(sorted(values, key=natural_key)))
+            elif values:
+                out.append(" / ".join(values))
+        return out
+
+    lines = {n: lines_of(n) for n in nodes}
+    height = BASE_HEIGHT + LINE * max(0, max((len(v) for v in lines.values()), default=1) - 1)
+    width = {
+        n: max(WIDTH, int(max([(7.5 if i == 0 else 6.3) * len(t) for i, t in enumerate(lines[n])] or [0]) + 22))
+        for n in nodes
+    }
 
     # Edges spanning several levels get invisible waypoints in the intermediate
     # rows, so they take part in the ordering and are routed around other nodes.
@@ -129,7 +169,7 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
     for k, row in rows.items():
         x = MARGIN + (total - row_width[k]) / 2
         for n in row:
-            xy[n] = (x + width[n] / 2, MARGIN + k * (HEIGHT + GAP_Y) + HEIGHT / 2)
+            xy[n] = (x + width[n] / 2, MARGIN + k * (height + GAP_Y) + height / 2)
             x += width[n] + GAP_X
 
     strength: dict[tuple[str, str], int] = {}
@@ -141,7 +181,7 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
 
     last = max(rows, default=0)
     w = total + 2 * MARGIN
-    h = 2 * MARGIN + (last + 1) * HEIGHT + last * GAP_Y
+    h = 2 * MARGIN + (last + 1) * height + last * GAP_Y
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" '
         f'width="{w:.0f}" height="{h:.0f}">',
@@ -150,9 +190,9 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
         '<g id="edges">',
     ]
     for (a, b), chain in chains.items():
-        points = [(xy[a][0], xy[a][1] + HEIGHT / 2)]
+        points = [(xy[a][0], xy[a][1] + height / 2)]
         points += [xy[w] for w in chain[1:-1]]
-        points.append((xy[b][0], xy[b][1] - HEIGHT / 2))
+        points.append((xy[b][0], xy[b][1] - height / 2))
         certainty = name[strength.get((a, b), 3)]
         bad = highlight_errors and (a, b) in broken
         dash = f' stroke-dasharray="{DASH[certainty]}"' if DASH[certainty] else ""
@@ -167,12 +207,18 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
         classes = f"node {kind[n]}" + (" error" if highlight_errors and n in in_cycle else "")
         ident = "unit-" + "-".join(label[n].replace(" = ", "-").split()).replace(" ", "_")
         title = "; ".join(f"{u.unit_id}: {u.description}" for u in members[n] if u.description)
+        top = y - LINE * (len(lines[n]) - 1) / 2 + 5  # vertically centre the text block
+        extra = ' class="extra"'
+        texts = "".join(
+            f'<text{"" if i == 0 else extra} x="{x:.0f}" y="{top + i * LINE:.0f}">{escape(t)}</text>'
+            for i, t in enumerate(lines[n])
+        )
         out.append(
             f'<g id={quoteattr(ident)} class="{classes}" data-type="{kind[n]}">'
             f"<title>{escape(title)}</title>"
-            f'<rect x="{x - width[n] / 2:.0f}" y="{y - HEIGHT / 2:.0f}" width="{width[n]}" height="{HEIGHT}" '
-            f'rx="{HEIGHT / 2 if kind[n] == "interface" else 3:.0f}"/>'
-            f'<text x="{x:.0f}" y="{y + 5:.0f}">{escape(label[n])}</text></g>'
+            f'<rect x="{x - width[n] / 2:.0f}" y="{y - height / 2:.0f}" width="{width[n]}" height="{height}" '
+            f'rx="{BASE_HEIGHT / 2 if kind[n] == "interface" else 3:.0f}"/>'
+            f"{texts}</g>"
         )
     out += ["</g>", "</svg>"]
     return "\n".join(out) + "\n"
