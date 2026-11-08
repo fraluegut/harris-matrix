@@ -1,9 +1,0 @@
-ue_id,tipo_unidad,descripcion
-1,deposito,Humus
-2,deposito,Relleno
-3,interfaz,Fosa sin relleno
-4,deposito,Capa
-5,deposito,Capa
-6,estructura,Muro
-7,deposito,Huérfana
-2,deposito,Duplicada

@@ -1,0 +1,13 @@
+from_unit,type,to_unit,certainty
+1,covers,2,certain
+1,covers,5,certain
+2,covers,6,certain
+5,fills,4,certain
+4,cuts,7,certain
+6,covers,7,certain
+7,rests_on,3,certain
+3,covers,9,certain
+9,fills,8,certain
+8,cuts,10,certain
+10,covers,11,certain
+12,same_as,10,doubtful

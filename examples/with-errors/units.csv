@@ -1,0 +1,9 @@
+unit_id,unit_type,description
+1,deposit,Topsoil
+2,deposit,Fill
+3,interface,Pit without fill
+4,deposit,Layer
+5,deposit,Layer
+6,structure,Wall
+7,deposit,Orphan
+2,deposit,Duplicate

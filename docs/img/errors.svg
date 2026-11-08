@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592 194" width="592" height="194">
-<style>.nodo rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
-.nodo.interfaz rect { fill: #eef3fb }
-.nodo.estructura rect { fill: #f4ede4; stroke-width: 2.5 }
-.nodo.virtual rect { stroke-dasharray: 4 3 }
-.nodo text { font: 13px sans-serif; fill: #111; text-anchor: middle }
-.arista { stroke: #222; stroke-width: 1.5; fill: none }
+<style>.node rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
+.node.interface rect { fill: #eef3fb }
+.node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
+.node.virtual rect { stroke-dasharray: 4 3 }
+.node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.edge { stroke: #222; stroke-width: 1.5; fill: none }
 .error rect { stroke: #c00; stroke-width: 3 }
-.arista.error { stroke: #c00 }</style>
+.edge.error { stroke: #c00 }</style>
 <rect width="100%" height="100%" fill="#fff"/>
-<g id="aristas">
-<line class="arista error" data-certeza="segura" x1="240" y1="164" x2="352" y2="126"/>
-<line class="arista error" data-certeza="segura" x1="352" y1="164" x2="184" y2="30"/>
-<line class="arista" data-certeza="segura" x1="296" y1="68" x2="352" y2="126"/>
-<line class="arista error" data-certeza="segura" x1="408" y1="68" x2="520" y2="30"/>
-<line class="arista error" data-certeza="segura" x1="520" y1="68" x2="408" y2="30"/>
-<line class="arista" data-certeza="segura" x1="72" y1="68" x2="240" y2="126"/>
-<line class="arista error" data-certeza="segura" x1="184" y1="68" x2="240" y2="126"/>
+<g id="edges">
+<line class="edge error" data-certainty="certain" x1="240" y1="164" x2="352" y2="126"/>
+<line class="edge error" data-certainty="certain" x1="352" y1="164" x2="184" y2="30"/>
+<line class="edge" data-certainty="certain" x1="296" y1="68" x2="352" y2="126"/>
+<line class="edge error" data-certainty="certain" x1="408" y1="68" x2="520" y2="30"/>
+<line class="edge error" data-certainty="certain" x1="520" y1="68" x2="408" y2="30"/>
+<line class="edge" data-certainty="certain" x1="72" y1="68" x2="240" y2="126"/>
+<line class="edge error" data-certainty="certain" x1="184" y1="68" x2="240" y2="126"/>
 </g>
-<g id="ues">
-<g id="ue-1" class="nodo deposito error" data-tipo="deposito"><title>1: Humus</title><rect x="198" y="126" width="84" height="38" rx="3"/><text x="240" y="150">1</text></g>
-<g id="ue-2-2" class="nodo deposito error" data-tipo="deposito"><title>2: Relleno; 2: Duplicada</title><rect x="310" y="126" width="84" height="38" rx="3"/><text x="352" y="150">2 = 2</text></g>
-<g id="ue-3" class="nodo interfaz" data-tipo="interfaz"><title>3: Fosa sin relleno</title><rect x="254" y="30" width="84" height="38" rx="19"/><text x="296" y="54">3</text></g>
-<g id="ue-4" class="nodo deposito error" data-tipo="deposito"><title>4: Capa</title><rect x="366" y="30" width="84" height="38" rx="3"/><text x="408" y="54">4</text></g>
-<g id="ue-5" class="nodo deposito error" data-tipo="deposito"><title>5: Capa</title><rect x="478" y="30" width="84" height="38" rx="3"/><text x="520" y="54">5</text></g>
-<g id="ue-6" class="nodo estructura" data-tipo="estructura"><title>6: Muro</title><rect x="30" y="30" width="84" height="38" rx="3"/><text x="72" y="54">6</text></g>
-<g id="ue-7" class="nodo deposito error" data-tipo="deposito"><title>7: Huérfana</title><rect x="142" y="30" width="84" height="38" rx="3"/><text x="184" y="54">7</text></g>
+<g id="units">
+<g id="unit-1" class="node deposit error" data-type="deposit"><title>1: Topsoil</title><rect x="198" y="126" width="84" height="38" rx="3"/><text x="240" y="150">1</text></g>
+<g id="unit-2-2" class="node deposit error" data-type="deposit"><title>2: Fill; 2: Duplicate</title><rect x="310" y="126" width="84" height="38" rx="3"/><text x="352" y="150">2 = 2</text></g>
+<g id="unit-3" class="node interface" data-type="interface"><title>3: Pit without fill</title><rect x="254" y="30" width="84" height="38" rx="19"/><text x="296" y="54">3</text></g>
+<g id="unit-4" class="node deposit error" data-type="deposit"><title>4: Layer</title><rect x="366" y="30" width="84" height="38" rx="3"/><text x="408" y="54">4</text></g>
+<g id="unit-5" class="node deposit error" data-type="deposit"><title>5: Layer</title><rect x="478" y="30" width="84" height="38" rx="3"/><text x="520" y="54">5</text></g>
+<g id="unit-6" class="node structure" data-type="structure"><title>6: Wall</title><rect x="30" y="30" width="84" height="38" rx="3"/><text x="72" y="54">6</text></g>
+<g id="unit-7" class="node deposit error" data-type="deposit"><title>7: Orphan</title><rect x="142" y="30" width="84" height="38" rx="3"/><text x="184" y="54">7</text></g>
 </g>
 </svg>

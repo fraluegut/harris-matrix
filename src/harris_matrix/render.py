@@ -1,140 +1,140 @@
-"""Matriz de Harris en SVG editable, sin dependencias."""
+"""Harris matrix as editable SVG, with no dependencies."""
 
 from __future__ import annotations
 
 from xml.sax.saxutils import escape, quoteattr
 
-from .model import TEMPORALES, Proyecto, clave_natural
-from .verify import encontrar_ciclos, grafo_temporal
+from .model import TEMPORAL, Project, natural_key
+from .verify import find_cycles, temporal_graph
 
-ANCHO, ALTO, SEP_X, SEP_Y, MARGEN = 84, 38, 28, 58, 30
-DASH = {"segura": "", "probable": "7 4", "dudosa": "2 4"}
-FUERZA = {"segura": 3, "probable": 2, "dudosa": 1}
+WIDTH, HEIGHT, GAP_X, GAP_Y, MARGIN = 84, 38, 28, 58, 30
+DASH = {"certain": "", "probable": "7 4", "doubtful": "2 4"}
+STRENGTH = {"certain": 3, "probable": 2, "doubtful": 1}
 
-ESTILO = """
-.nodo rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
-.nodo.interfaz rect { fill: #eef3fb }
-.nodo.estructura rect { fill: #f4ede4; stroke-width: 2.5 }
-.nodo.virtual rect { stroke-dasharray: 4 3 }
-.nodo text { font: 13px sans-serif; fill: #111; text-anchor: middle }
-.arista { stroke: #222; stroke-width: 1.5; fill: none }
+STYLE = """
+.node rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
+.node.interface rect { fill: #eef3fb }
+.node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
+.node.virtual rect { stroke-dasharray: 4 3 }
+.node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.edge { stroke: #222; stroke-width: 1.5; fill: none }
 .error rect { stroke: #c00; stroke-width: 3 }
-.arista.error { stroke: #c00 }
+.edge.error { stroke: #c00 }
 """.strip()
 
 
-def _niveles(nodos, aristas):
-    """Nivel = camino más largo desde arriba; las aristas de ciclo se ignoran."""
-    ciclos = encontrar_ciclos(aristas)
-    rotas = {(c[i], c[i + 1]) for c in ciclos for i in range(len(c) - 1)}
-    util = {a: {b for b in aristas[a] if (a, b) not in rotas} for a in nodos}
-    nivel: dict[str, int] = {}
+def _levels(nodes, edges):
+    """Level = longest path from the top; cycle edges are ignored."""
+    cycles = find_cycles(edges)
+    broken = {(c[i], c[i + 1]) for c in cycles for i in range(len(c) - 1)}
+    usable = {a: {b for b in edges[a] if (a, b) not in broken} for a in nodes}
+    level: dict[str, int] = {}
 
-    def prof(n: str) -> int:
-        if n not in nivel:
-            nivel[n] = -1
-            nivel[n] = max((prof(p) + 1 for p in nodos if n in util[p]), default=0)
-        return nivel[n]
+    def depth(n: str) -> int:
+        if n not in level:
+            level[n] = -1
+            level[n] = max((depth(p) + 1 for p in nodes if n in usable[p]), default=0)
+        return level[n]
 
-    for n in nodos:
-        prof(n)
-    return nivel, rotas, {n for c in ciclos for n in c}
+    for n in nodes:
+        depth(n)
+    return level, broken, {n for c in cycles for n in c}
 
 
-def _reducir(aristas):
-    """Reducción transitiva: se dibuja solo lo imprescindible."""
-    def alcanza(o, d, sin):
-        pila, visto = [x for x in aristas[o] if (o, x) != sin], {o}
-        while pila:
-            n = pila.pop()
-            if n == d:
+def _reduce(edges):
+    """Transitive reduction: draw only the edges that are not implied by others."""
+    def reaches(origin, target, skip):
+        stack, seen = [x for x in edges[origin] if (origin, x) != skip], {origin}
+        while stack:
+            n = stack.pop()
+            if n == target:
                 return True
-            if n not in visto:
-                visto.add(n)
-                pila.extend(aristas[n])
+            if n not in seen:
+                seen.add(n)
+                stack.extend(edges[n])
         return False
-    return {a: {b for b in bs if not alcanza(a, b, (a, b))} for a, bs in aristas.items()}
+    return {a: {b for b in bs if not reaches(a, b, (a, b))} for a, bs in edges.items()}
 
 
-def renderizar_svg(proyecto: Proyecto, errores: bool = True) -> str:
-    rep, aristas = grafo_temporal(proyecto)
-    nodos = sorted(aristas, key=clave_natural)
-    nivel, rotas, en_ciclo = _niveles(nodos, aristas)
-    reducidas = aristas if rotas else _reducir(aristas)
+def render_svg(project: Project, highlight_errors: bool = True) -> str:
+    """Return the Harris matrix as an SVG document (later units on top)."""
+    rep, edges = temporal_graph(project)
+    nodes = sorted(edges, key=natural_key)
+    level, broken, in_cycle = _levels(nodes, edges)
+    drawn = edges if broken else _reduce(edges)
 
-    grupos = {n: [u for u in proyecto.ues if rep[u.ue_id] == n] for n in nodos}
-    etiqueta = {n: " = ".join(sorted((u.ue_id for u in grupos[n]), key=clave_natural)) for n in nodos}
-    tipo = {n: grupos[n][0].tipo_unidad for n in nodos}
-    ancho = {n: max(ANCHO, 9 * len(etiqueta[n]) + 20) for n in nodos}
+    members = {n: [u for u in project.units if rep[u.unit_id] == n] for n in nodes}
+    label = {n: " = ".join(sorted((u.unit_id for u in members[n]), key=natural_key)) for n in nodes}
+    kind = {n: members[n][0].unit_type for n in nodes}
+    width = {n: max(WIDTH, 9 * len(label[n]) + 20) for n in nodes}
 
-    filas: dict[int, list[str]] = {}
-    for n in nodos:
-        filas.setdefault(nivel[n], []).append(n)
-    vecinos = {n: [m for m in nodos if m in reducidas[n] or n in reducidas[m]] for n in nodos}
-    pos: dict[str, float] = {}
+    rows: dict[int, list[str]] = {}
+    for n in nodes:
+        rows.setdefault(level[n], []).append(n)
+    neighbours = {n: [m for m in nodes if m in drawn[n] or n in drawn[m]] for n in nodes}
+    order: dict[str, float] = {}
+    for row in rows.values():
+        for i, n in enumerate(row):
+            order[n] = i
+    # Barycentre sweeps, alternating direction, to reduce crossings.
+    for sweep in range(6):
+        for k in sorted(rows, reverse=bool(sweep % 2)):
+            def barycentre(n):
+                v = [order[m] for m in neighbours[n] if level[m] != k]
+                return sum(v) / len(v) if v else order[n]
+            rows[k].sort(key=lambda n: (barycentre(n), natural_key(n)))
+            for i, n in enumerate(rows[k]):
+                order[n] = i
 
-    def repartir() -> None:
-        for fila in filas.values():
-            for i, n in enumerate(fila):
-                pos[n] = i
-    repartir()
-    for barrido in range(6):
-        for k in sorted(filas, reverse=bool(barrido % 2)):
-            def baricentro(n):
-                v = [pos[m] for m in vecinos[n] if nivel[m] != k]
-                return sum(v) / len(v) if v else pos[n]
-            filas[k].sort(key=lambda n: (baricentro(n), clave_natural(n)))
-            for i, n in enumerate(filas[k]):
-                pos[n] = i
-
-    anchos_fila = {k: sum(ancho[n] for n in f) + SEP_X * (len(f) - 1) for k, f in filas.items()}
-    total = max(anchos_fila.values(), default=ANCHO)
+    row_width = {k: sum(width[n] for n in r) + GAP_X * (len(r) - 1) for k, r in rows.items()}
+    total = max(row_width.values(), default=WIDTH)
     xy: dict[str, tuple[float, float]] = {}
-    for k, fila in filas.items():
-        x = MARGEN + (total - anchos_fila[k]) / 2
-        for n in fila:
-            xy[n] = (x + ancho[n] / 2, MARGEN + k * (ALTO + SEP_Y) + ALTO / 2)
-            x += ancho[n] + SEP_X
+    for k, row in rows.items():
+        x = MARGIN + (total - row_width[k]) / 2
+        for n in row:
+            xy[n] = (x + width[n] / 2, MARGIN + k * (HEIGHT + GAP_Y) + HEIGHT / 2)
+            x += width[n] + GAP_X
 
-    fuerza: dict[tuple[str, str], int] = {}
-    for r in proyecto.relaciones:
-        if r.tipo in TEMPORALES and r.ue_origen in rep and r.ue_destino in rep:
-            par = (rep[r.ue_origen], rep[r.ue_destino])
-            fuerza[par] = max(fuerza.get(par, 0), FUERZA.get(r.certeza, 3))
-    nombre = {v: k for k, v in FUERZA.items()}
+    strength: dict[tuple[str, str], int] = {}
+    for r in project.relations:
+        if r.type in TEMPORAL and r.from_unit in rep and r.to_unit in rep:
+            pair = (rep[r.from_unit], rep[r.to_unit])
+            strength[pair] = max(strength.get(pair, 0), STRENGTH.get(r.certainty, 3))
+    name = {v: k for k, v in STRENGTH.items()}
 
-    w = total + 2 * MARGEN
-    h = 2 * MARGEN + (max(filas, default=0) + 1) * ALTO + max(filas, default=0) * SEP_Y
+    last = max(rows, default=0)
+    w = total + 2 * MARGIN
+    h = 2 * MARGIN + (last + 1) * HEIGHT + last * GAP_Y
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" '
         f'width="{w:.0f}" height="{h:.0f}">',
-        f"<style>{ESTILO}</style>",
+        f"<style>{STYLE}</style>",
         '<rect width="100%" height="100%" fill="#fff"/>',
-        '<g id="aristas">',
+        '<g id="edges">',
     ]
-    for a in nodos:
-        for b in sorted(reducidas[a], key=clave_natural):
+    for a in nodes:
+        for b in sorted(drawn[a], key=natural_key):
             (x1, y1), (x2, y2) = xy[a], xy[b]
-            cert = nombre[fuerza.get((a, b), 3)]
-            malo = errores and (a, b) in rotas
-            dash = f' stroke-dasharray="{DASH[cert]}"' if DASH[cert] else ""
+            certainty = name[strength.get((a, b), 3)]
+            bad = highlight_errors and (a, b) in broken
+            dash = f' stroke-dasharray="{DASH[certainty]}"' if DASH[certainty] else ""
             out.append(
-                f'<line class="arista{" error" if malo else ""}" data-certeza="{cert}" '
-                f'x1="{x1:.0f}" y1="{y1 + ALTO / 2:.0f}" x2="{x2:.0f}" y2="{y2 - ALTO / 2:.0f}"{dash}/>'
+                f'<line class="edge{" error" if bad else ""}" data-certainty="{certainty}" '
+                f'x1="{x1:.0f}" y1="{y1 + HEIGHT / 2:.0f}" x2="{x2:.0f}" y2="{y2 - HEIGHT / 2:.0f}"{dash}/>'
             )
     out.append("</g>")
-    out.append('<g id="ues">')
-    for n in nodos:
+    out.append('<g id="units">')
+    for n in nodes:
         x, y = xy[n]
-        clases = f"nodo {tipo[n]}" + (" error" if errores and n in en_ciclo else "")
-        ident = "ue-" + "-".join(u.ue_id.replace(" ", "_") for u in grupos[n])
-        titulo = "; ".join(f"{u.ue_id}: {u.descripcion}" for u in grupos[n] if u.descripcion)
+        classes = f"node {kind[n]}" + (" error" if highlight_errors and n in in_cycle else "")
+        ident = "unit-" + "-".join(u.unit_id.replace(" ", "_") for u in members[n])
+        title = "; ".join(f"{u.unit_id}: {u.description}" for u in members[n] if u.description)
         out.append(
-            f'<g id={quoteattr(ident)} class="{clases}" data-tipo="{tipo[n]}">'
-            f"<title>{escape(titulo)}</title>"
-            f'<rect x="{x - ancho[n] / 2:.0f}" y="{y - ALTO / 2:.0f}" width="{ancho[n]}" height="{ALTO}" '
-            f'rx="{ALTO / 2 if tipo[n] == "interfaz" else 3:.0f}"/>'
-            f'<text x="{x:.0f}" y="{y + 5:.0f}">{escape(etiqueta[n])}</text></g>'
+            f'<g id={quoteattr(ident)} class="{classes}" data-type="{kind[n]}">'
+            f"<title>{escape(title)}</title>"
+            f'<rect x="{x - width[n] / 2:.0f}" y="{y - HEIGHT / 2:.0f}" width="{width[n]}" height="{HEIGHT}" '
+            f'rx="{HEIGHT / 2 if kind[n] == "interface" else 3:.0f}"/>'
+            f'<text x="{x:.0f}" y="{y + 5:.0f}">{escape(label[n])}</text></g>'
         )
     out += ["</g>", "</svg>"]
     return "\n".join(out) + "\n"

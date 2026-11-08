@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "harris-matrix"
 version = "0.1.0"
-description = "Librería para registrar, verificar y dibujar la estratigrafía arqueológica (excavación y arqueología paramental) con matriz de Harris."
+description = "Record, verify and draw archaeological stratigraphy (excavation and standing-buildings archaeology) as Harris matrices."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Francisco Javier Luengo Gutiérrez", email = "javierluengogutierrez@gmail.com" }]
-keywords = ["archaeology", "arqueologia", "harris matrix", "stratigraphy", "building archaeology", "paramental"]
+keywords = ["archaeology", "harris matrix", "stratigraphy", "building archaeology"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",

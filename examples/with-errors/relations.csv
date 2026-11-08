@@ -1,0 +1,11 @@
+from_unit,type,to_unit,certainty
+1,covers,2,certain
+3,cuts,2,certain
+1,covers,99,certain
+4,covers,5,certain
+5,covers,4,certain
+6,cuts,1,certain
+2,touches,1,certain
+2,covers,2,certain
+2,covers,7,certain
+7,covers,1,certain

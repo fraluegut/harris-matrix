@@ -4,7 +4,7 @@
 
 🇬🇧 [Read in English](README.md)
 
-> Estado: **alfa (0.1)**. Funcionan el modelo base, `verify` y `render` a SVG. El modelo de datos es un borrador sin contrastar con arqueólogos de campo ([diseño](docs/modelo-de-datos.md)).
+> Estado: **alfa (0.1)**. Funcionan el modelo base, `verify` y `render` a SVG. El modelo de datos es un borrador sin contrastar con arqueólogos de campo (ver el [diseño](docs/data-model.md), en inglés).
 
 ![Matriz de Harris generada desde examples/demo](docs/img/demo.svg)
 
@@ -13,15 +13,29 @@
 ```bash
 pip install -e .
 harris-matrix verify examples/demo
-harris-matrix --lang es verify examples/con-errores
 harris-matrix render examples/demo -o matriz.svg
 ```
 
-Una carpeta con `ues.csv` (`ue_id`, `tipo_unidad`, `subtipo`, `descripcion`) y `relaciones.csv` (`ue_origen`, `tipo`, `ue_destino`, `certeza`). La UE de origen es **posterior** a la de destino. Tipos: `cubre`, `corta`, `rellena`, `se_apoya_en`, `se_une_a`, `igual_a`, `posterior_a` (y sus inversas).
+Una carpeta con dos CSV (UTF-8):
 
-Verificación (R01–R05, R10–R16): duplicados, referencias inexistentes, vocabulario, tipos admitidos, ciclos, cortes sin relleno, UE huérfanas, relaciones redundantes. Los ciclos salen en rojo en el SVG. Código de salida distinto de cero si hay errores; `--json` para salida automática.
+- `units.csv` (unidades): `unit_id`, `unit_type` (`deposit` depósito, `interface` interfaz, `structure` estructura, `virtual`), `subtype`, `description`.
+- `relations.csv` (relaciones): `from_unit`, `type`, `to_unit`, `certainty` (`certain` segura, `probable`, `doubtful` dudosa). La unidad de origen es **posterior** a la de destino.
+
+Tipos de relación: `covers` (cubre), `cuts` (corta), `fills` (rellena), `rests_on` (se apoya en), `bonded_to` (trabada con), `same_as` (igual a), `later_than` (posterior a). Se aceptan también las inversas (`covered_by`, `cut_by`...).
+
+Verificación (R01–R06, R10–R16): duplicados, referencias inexistentes, vocabulario, tipos admitidos, ciclos, cortes sin relleno, unidades huérfanas, relaciones redundantes. Los ciclos salen en rojo en el SVG. Devuelve código de salida distinto de cero si hay errores; `--json` para salida automática.
 
 Principios: se registran hechos, el orden y el gráfico se derivan; toda relación lleva certeza; la ausencia de relación no implica contemporaneidad.
+
+Desde Python:
+
+```python
+from harris_matrix import load_project, verify, render_svg
+
+project = load_project("examples/demo")
+issues = verify(project)
+svg = render_svg(project)
+```
 
 ## Desarrollo
 
