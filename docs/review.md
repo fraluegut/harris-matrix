@@ -26,7 +26,18 @@ CI also builds the package and runs `twine check`, which validates exactly what 
 
 ## 2. Pull requests
 
-Work on a branch, open a PR, merge when CI is green: `git switch -c feature/x`, commit, `git push -u origin feature/x`, `gh pr create`. Branch protection on `master` can make this mandatory (require a PR and a passing `tests` check).
+Mandatory: branch protection on `master` rejects direct pushes (also from the owner) and requires a pull request with the checks `test (3.10)`, `test (3.12)` and `package` passing. No approvals are required, since the project has a single maintainer; the PR is still the place to re-read your own diff and write down why.
+
+```bash
+git switch -c feat/my-change      # one branch per self-contained change
+# ...edit, commit (the pre-commit hook runs)...
+git push -u origin feat/my-change
+gh pr create --fill               # fill in the checklist of the template
+gh pr merge --squash --delete-branch   # when CI is green
+git switch master && git pull
+```
+
+Squash merging keeps `master` as one commit per change, which makes history readable and reverts easy.
 
 ## 3. Human review (each change, as relevant)
 

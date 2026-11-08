@@ -1,6 +1,6 @@
 # Working instructions
 
-- Every relatively small, self-contained change ends with a commit and, when the `origin` remote exists, a push to `origin/master`.
+- `master` is protected: no direct pushes. Every relatively small, self-contained change goes on its own branch (`feat/...`, `fix/...`, `docs/...`, `chore/...`), ends with a commit, is pushed, and is merged through a pull request (`gh pr create`, then `gh pr merge --squash --delete-branch` once CI is green). Afterwards `git switch master && git pull`.
 - Before pushing, run `python3 scripts/check.py` (also run by the pre-commit hook and CI; see `docs/review.md`). It covers tests, examples, links, language, secrets and generated images.
 - The user's goal is to learn how to build a library with good practices: when adding tooling or conventions, briefly explain why it is good practice.
 - Do not publish to PyPI unless the user explicitly asks.
