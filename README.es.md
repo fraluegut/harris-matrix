@@ -23,7 +23,7 @@ Una carpeta con dos CSV (UTF-8):
 
 Tipos de relación: `covers` (cubre), `cuts` (corta), `fills` (rellena), `rests_on` (se apoya en), `bonded_to` (trabada con), `same_as` (igual a), `later_than` (posterior a). Se aceptan también las inversas (`covered_by`, `cut_by`...).
 
-Verificación (R01–R06, R10–R16): duplicados, referencias inexistentes, vocabulario, tipos admitidos, ciclos, cortes sin relleno, unidades huérfanas, relaciones redundantes. Los ciclos salen en rojo en el SVG. Devuelve código de salida distinto de cero si hay errores; `--json` para salida automática.
+Verificación (R01–R06, R10–R16, R18): duplicados, referencias inexistentes, vocabulario, tipos admitidos, ciclos, cortes sin relleno, unidades huérfanas, relaciones redundantes. Los ciclos salen en rojo en el SVG. Devuelve código de salida distinto de cero si hay errores; `--json` para salida automática.
 
 Principios: se registran hechos, el orden y el gráfico se derivan; toda relación lleva certeza; la ausencia de relación no implica contemporaneidad.
 

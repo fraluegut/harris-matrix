@@ -23,26 +23,34 @@ STYLE = """
 """.strip()
 
 
-def _levels(nodes, edges):
-    """Level = longest path from the top; cycle edges are ignored."""
+def _levels(nodes, edges, bonded):
+    """Level = longest path from the top; bonded (contemporary) units share a level.
+
+    Cycle edges are ignored.
+    """
     cycles = find_cycles(edges)
     broken = {(c[i], c[i + 1]) for c in cycles for i in range(len(c) - 1)}
     usable = {a: {b for b in edges[a] if (a, b) not in broken} for a in nodes}
-    level: dict[str, int] = {}
-
-    def depth(n: str) -> int:
-        if n not in level:
-            level[n] = -1
-            level[n] = max((depth(p) + 1 for p in nodes if n in usable[p]), default=0)
-        return level[n]
-
-    for n in nodes:
-        depth(n)
+    level = {n: 0 for n in nodes}
+    for _ in range(len(nodes) + 1):  # relax until stable (capped, in case of contradictions)
+        changed = False
+        for a in nodes:
+            for b in usable[a]:
+                if level[b] < level[a] + 1:
+                    level[b], changed = level[a] + 1, True
+        for a, b in bonded:
+            top = max(level[a], level[b])
+            if level[a] != top or level[b] != top:
+                level[a] = level[b] = top
+                changed = True
+        if not changed:
+            break
     # Units with nothing above them sit just above their nearest successor
     # instead of floating to the top of the matrix.
     has_parent = {b for a in nodes for b in usable[a]}
+    pinned = {n for pair in bonded for n in pair}
     for n in nodes:
-        if n not in has_parent and usable[n]:
+        if n not in has_parent and n not in pinned and usable[n]:
             level[n] = min(level[s] for s in usable[n]) - 1
     return level, broken, {n for c in cycles for n in c}
 
@@ -66,7 +74,13 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
     """Return the Harris matrix as an SVG document (later units on top)."""
     rep, edges = temporal_graph(project)
     nodes = sorted(edges, key=natural_key)
-    level, broken, in_cycle = _levels(nodes, edges)
+    bonded = [
+        (rep[r.from_unit], rep[r.to_unit])
+        for r in project.relations
+        if r.type == "bonded_to" and r.from_unit in rep and r.to_unit in rep
+        and rep[r.from_unit] != rep[r.to_unit]
+    ]
+    level, broken, in_cycle = _levels(nodes, edges, bonded)
     drawn = edges if broken else _reduce(edges)
 
     members = {n: [u for u in project.units if rep[u.unit_id] == n] for n in nodes}

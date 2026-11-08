@@ -28,6 +28,17 @@ class VerifyTest(unittest.TestCase):
     def test_complex_example_is_clean(self):
         self.assertEqual(verify(load_project(EXAMPLES / "complex")), [])
 
+    def test_bizarre_example_only_reports_a_redundancy(self):
+        self.assertEqual({(i.code, i.severity) for i in verify(load_project(EXAMPLES / "bizarre"))},
+                         {("R16", "info")})
+
+    def test_bonded_but_sequenced_is_an_error(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "units.csv").write_text("unit_id,unit_type\n1,structure\n2,structure\n")
+            (Path(d) / "relations.csv").write_text(
+                "from_unit,type,to_unit\n1,bonded_to,2\n1,covers,2\n")
+            self.assertIn("R18", {i.code for i in verify(load_project(d))})
+
     def test_transitive_redundancy(self):
         with tempfile.TemporaryDirectory() as d:
             (Path(d) / "units.csv").write_text("unit_id,unit_type\n1,deposit\n2,deposit\n3,deposit\n")
@@ -49,6 +60,16 @@ class RenderTest(unittest.TestCase):
         ids = {e.get("id") for e in root.iter() if e.get("id")}
         self.assertIn("unit-1", ids)
         self.assertIn("unit-10-12", ids)  # merged same_as units
+
+    def test_bonded_units_share_a_row(self):
+        root = ET.fromstring(render_svg(load_project(EXAMPLES / "bizarre")))
+        y = {
+            g.get("id"): g.find("{http://www.w3.org/2000/svg}rect").get("y")
+            for g in root.iter("{http://www.w3.org/2000/svg}g")
+            if g.get("id") in ("unit-W1", "unit-W3")
+        }
+        self.assertEqual(len(y), 2)
+        self.assertEqual(y["unit-W1"], y["unit-W3"])
 
     def test_cycle_highlighted(self):
         svg = render_svg(load_project(EXAMPLES / "with-errors"))

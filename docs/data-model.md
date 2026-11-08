@@ -95,6 +95,7 @@ Severities: **error**, **warning**, **info**. Non-zero exit code when there are 
 | R15 | Unit without relations | warning | ✔ |
 | R16 | Relation redundant by transitivity | info | ✔ |
 | R17 | Inverse written both ways with different data | warning | |
+| R18 | Units are `bonded_to` (contemporary) but the sequence orders them | error | ✔ |
 | R20 | Bottom level higher than top level | error | |
 | R21 | Invalid geometry or outside the site | error | |
 | R22 | A covers B but is clearly below it (with tolerance) | warning | |

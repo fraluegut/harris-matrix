@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 2210" width="408" height="2210">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 2210" width="448" height="2210">
 <style>.node rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
 .node.interface rect { fill: #eef3fb }
 .node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
@@ -9,76 +9,76 @@
 .edge.error { stroke: #c00 }</style>
 <rect width="100%" height="100%" fill="#fff"/>
 <g id="edges">
-<polyline class="edge" data-certainty="certain" points="204,68 204,126"/>
-<polyline class="edge" data-certainty="certain" points="204,164 204,222"/>
-<polyline class="edge" data-certainty="certain" points="204,356 204,414"/>
-<polyline class="edge" data-certainty="certain" points="204,260 204,318"/>
-<polyline class="edge" data-certainty="certain" points="204,452 148,510"/>
-<polyline class="edge" data-certainty="probable" points="204,452 260,510" stroke-dasharray="7 4"/>
-<polyline class="edge" data-certainty="certain" points="204,740 204,798"/>
-<polyline class="edge" data-certainty="certain" points="204,836 204,894"/>
-<polyline class="edge" data-certainty="probable" points="148,644 204,702" stroke-dasharray="7 4"/>
-<polyline class="edge" data-certainty="certain" points="148,548 148,606"/>
-<polyline class="edge" data-certainty="certain" points="260,644 204,702"/>
-<polyline class="edge" data-certainty="certain" points="260,548 260,606"/>
-<polyline class="edge" data-certainty="certain" points="204,1028 204,1086"/>
-<polyline class="edge" data-certainty="certain" points="204,1028 92,1086"/>
-<polyline class="edge" data-certainty="certain" points="204,1028 316,1086"/>
-<polyline class="edge" data-certainty="certain" points="204,932 204,990"/>
-<polyline class="edge" data-certainty="certain" points="72,1412 144,1470"/>
-<polyline class="edge" data-certainty="certain" points="92,1220 240,1278"/>
-<polyline class="edge" data-certainty="certain" points="128,1316 72,1374"/>
-<polyline class="edge" data-certainty="certain" points="128,1316 184,1374"/>
-<polyline class="edge" data-certainty="certain" points="184,1412 220,1489 276,1585 204,1662"/>
-<polyline class="edge" data-certainty="certain" points="88,1604 204,1662"/>
-<polyline class="edge" data-certainty="certain" points="144,1508 88,1566"/>
-<polyline class="edge" data-certainty="doubtful" points="296,1412 260,1489 316,1585 204,1662" stroke-dasharray="2 4"/>
-<polyline class="edge" data-certainty="certain" points="240,1316 296,1374"/>
-<polyline class="edge" data-certainty="certain" points="204,1124 204,1182"/>
-<polyline class="edge" data-certainty="certain" points="92,1124 92,1182"/>
-<polyline class="edge" data-certainty="certain" points="204,1700 204,1758"/>
-<polyline class="edge" data-certainty="certain" points="316,1220 316,1297 372,1393 300,1489 356,1585 204,1662"/>
-<polyline class="edge" data-certainty="certain" points="316,1124 316,1182"/>
-<polyline class="edge" data-certainty="certain" points="204,1220 128,1278"/>
-<polyline class="edge" data-certainty="certain" points="204,2084 204,2142"/>
-<polyline class="edge" data-certainty="certain" points="204,1988 204,2046"/>
-<polyline class="edge" data-certainty="certain" points="204,1892 204,1950"/>
-<polyline class="edge" data-certainty="certain" points="204,1796 204,1854"/>
-<polyline class="edge" data-certainty="doubtful" points="200,1604 204,1662" stroke-dasharray="2 4"/>
+<polyline class="edge" data-certainty="certain" points="224,68 224,126"/>
+<polyline class="edge" data-certainty="certain" points="224,164 224,222"/>
+<polyline class="edge" data-certainty="certain" points="224,356 224,414"/>
+<polyline class="edge" data-certainty="certain" points="224,260 224,318"/>
+<polyline class="edge" data-certainty="certain" points="224,452 168,510"/>
+<polyline class="edge" data-certainty="probable" points="224,452 280,510" stroke-dasharray="7 4"/>
+<polyline class="edge" data-certainty="certain" points="224,740 224,798"/>
+<polyline class="edge" data-certainty="certain" points="224,836 224,894"/>
+<polyline class="edge" data-certainty="probable" points="168,644 224,702" stroke-dasharray="7 4"/>
+<polyline class="edge" data-certainty="certain" points="168,548 168,606"/>
+<polyline class="edge" data-certainty="certain" points="280,644 224,702"/>
+<polyline class="edge" data-certainty="certain" points="280,548 280,606"/>
+<polyline class="edge" data-certainty="certain" points="224,1028 112,1086"/>
+<polyline class="edge" data-certainty="certain" points="224,1028 336,1086"/>
+<polyline class="edge" data-certainty="certain" points="224,1028 224,1086"/>
+<polyline class="edge" data-certainty="certain" points="224,932 224,990"/>
+<polyline class="edge" data-certainty="certain" points="92,1412 128,1470"/>
+<polyline class="edge" data-certainty="certain" points="204,1412 240,1470"/>
+<polyline class="edge" data-certainty="certain" points="184,1316 92,1374"/>
+<polyline class="edge" data-certainty="certain" points="184,1316 316,1374"/>
+<polyline class="edge" data-certainty="certain" points="316,1412 316,1489 372,1585 224,1662"/>
+<polyline class="edge" data-certainty="certain" points="72,1604 224,1662"/>
+<polyline class="edge" data-certainty="certain" points="128,1508 72,1566"/>
+<polyline class="edge" data-certainty="doubtful" points="296,1604 224,1662" stroke-dasharray="2 4"/>
+<polyline class="edge" data-certainty="certain" points="240,1508 296,1566"/>
+<polyline class="edge" data-certainty="certain" points="112,1124 148,1182"/>
+<polyline class="edge" data-certainty="certain" points="336,1124 336,1201 260,1297 204,1374"/>
+<polyline class="edge" data-certainty="certain" points="224,1700 224,1758"/>
+<polyline class="edge" data-certainty="certain" points="260,1220 300,1297 392,1393 356,1489 412,1585 224,1662"/>
+<polyline class="edge" data-certainty="certain" points="224,1124 260,1182"/>
+<polyline class="edge" data-certainty="certain" points="148,1220 184,1278"/>
+<polyline class="edge" data-certainty="certain" points="224,2084 224,2142"/>
+<polyline class="edge" data-certainty="certain" points="224,1988 224,2046"/>
+<polyline class="edge" data-certainty="certain" points="224,1892 224,1950"/>
+<polyline class="edge" data-certainty="certain" points="224,1796 224,1854"/>
+<polyline class="edge" data-certainty="doubtful" points="184,1604 224,1662" stroke-dasharray="2 4"/>
 </g>
 <g id="units">
-<g id="unit-1" class="node deposit" data-type="deposit"><title>1: Modern topsoil</title><rect x="162" y="30" width="84" height="38" rx="3"/><text x="204" y="54">1</text></g>
-<g id="unit-2" class="node deposit" data-type="deposit"><title>2: Modern demolition rubble</title><rect x="162" y="126" width="84" height="38" rx="3"/><text x="204" y="150">2</text></g>
-<g id="unit-3" class="node interface" data-type="interface"><title>3: Modern service trench</title><rect x="162" y="318" width="84" height="38" rx="19"/><text x="204" y="342">3</text></g>
-<g id="unit-4" class="node deposit" data-type="deposit"><title>4: Fill of service trench 3</title><rect x="162" y="222" width="84" height="38" rx="3"/><text x="204" y="246">4</text></g>
-<g id="unit-5" class="node deposit" data-type="deposit"><title>5: Medieval roof collapse</title><rect x="162" y="414" width="84" height="38" rx="3"/><text x="204" y="438">5</text></g>
-<g id="unit-6" class="node deposit" data-type="deposit"><title>6: Medieval beaten-earth floor</title><rect x="162" y="702" width="84" height="38" rx="3"/><text x="204" y="726">6</text></g>
-<g id="unit-7" class="node structure" data-type="structure"><title>7: Medieval wall M3</title><rect x="162" y="798" width="84" height="38" rx="3"/><text x="204" y="822">7</text></g>
-<g id="unit-8" class="node interface" data-type="interface"><title>8: Medieval rubbish pit</title><rect x="106" y="606" width="84" height="38" rx="19"/><text x="148" y="630">8</text></g>
-<g id="unit-9" class="node deposit" data-type="deposit"><title>9: Fill of rubbish pit 8</title><rect x="106" y="510" width="84" height="38" rx="3"/><text x="148" y="534">9</text></g>
-<g id="unit-10" class="node interface" data-type="interface"><title>10: Medieval posthole</title><rect x="218" y="606" width="84" height="38" rx="19"/><text x="260" y="630">10</text></g>
-<g id="unit-11" class="node deposit" data-type="deposit"><title>11: Fill of posthole 10</title><rect x="218" y="510" width="84" height="38" rx="3"/><text x="260" y="534">11</text></g>
-<g id="unit-13" class="node deposit" data-type="deposit"><title>13: Roman abandonment layer</title><rect x="162" y="990" width="84" height="38" rx="3"/><text x="204" y="1014">13</text></g>
-<g id="unit-14" class="node deposit" data-type="deposit"><title>14: Roman wall collapse</title><rect x="162" y="894" width="84" height="38" rx="3"/><text x="204" y="918">14</text></g>
-<g id="unit-15" class="node structure" data-type="structure"><title>15: Roman wall M1</title><rect x="30" y="1374" width="84" height="38" rx="3"/><text x="72" y="1398">15</text></g>
-<g id="unit-16" class="node structure" data-type="structure"><title>16: Roman wall M2</title><rect x="50" y="1182" width="84" height="38" rx="3"/><text x="92" y="1206">16</text></g>
-<g id="unit-17" class="node deposit" data-type="deposit"><title>17: Roman mortar floor</title><rect x="86" y="1278" width="84" height="38" rx="3"/><text x="128" y="1302">17</text></g>
-<g id="unit-18" class="node deposit" data-type="deposit"><title>18: Bedding of the mortar floor</title><rect x="142" y="1374" width="84" height="38" rx="3"/><text x="184" y="1398">18</text></g>
-<g id="unit-19" class="node interface" data-type="interface"><title>19: Foundation trench of M1</title><rect x="46" y="1566" width="84" height="38" rx="19"/><text x="88" y="1590">19</text></g>
-<g id="unit-20" class="node deposit" data-type="deposit"><title>20: Fill of foundation trench 19</title><rect x="102" y="1470" width="84" height="38" rx="3"/><text x="144" y="1494">20</text></g>
-<g id="unit-21" class="node interface" data-type="interface"><title>21: Foundation trench of M2</title><rect x="254" y="1374" width="84" height="38" rx="19"/><text x="296" y="1398">21</text></g>
-<g id="unit-22" class="node deposit" data-type="deposit"><title>22: Fill of foundation trench 21</title><rect x="198" y="1278" width="84" height="38" rx="3"/><text x="240" y="1302">22</text></g>
-<g id="unit-23-34" class="node deposit" data-type="deposit"><title>23: Occupation layer in room A; 34: Occupation layer in room A (seen in section)</title><rect x="162" y="1086" width="84" height="38" rx="3"/><text x="204" y="1110">23 = 34</text></g>
-<g id="unit-24" class="node deposit" data-type="deposit"><title>24: Occupation layer in room B</title><rect x="50" y="1086" width="84" height="38" rx="3"/><text x="92" y="1110">24</text></g>
-<g id="unit-25" class="node deposit" data-type="deposit"><title>25: Roman levelling layer</title><rect x="162" y="1662" width="84" height="38" rx="3"/><text x="204" y="1686">25</text></g>
-<g id="unit-26" class="node interface" data-type="interface"><title>26: Roman storage pit</title><rect x="274" y="1182" width="84" height="38" rx="19"/><text x="316" y="1206">26</text></g>
-<g id="unit-27" class="node deposit" data-type="deposit"><title>27: Fill of storage pit 26</title><rect x="274" y="1086" width="84" height="38" rx="3"/><text x="316" y="1110">27</text></g>
-<g id="unit-28" class="node structure" data-type="structure"><title>28: Roman hearth in room A</title><rect x="162" y="1182" width="84" height="38" rx="3"/><text x="204" y="1206">28</text></g>
-<g id="unit-29" class="node deposit" data-type="deposit"><title>29: Buried soil</title><rect x="162" y="2046" width="84" height="38" rx="3"/><text x="204" y="2070">29</text></g>
-<g id="unit-30" class="node interface" data-type="interface"><title>30: Iron Age ditch</title><rect x="162" y="1950" width="84" height="38" rx="19"/><text x="204" y="1974">30</text></g>
-<g id="unit-31" class="node deposit" data-type="deposit"><title>31: Primary fill of ditch 30</title><rect x="162" y="1854" width="84" height="38" rx="3"/><text x="204" y="1878">31</text></g>
-<g id="unit-32" class="node deposit" data-type="deposit"><title>32: Secondary fill of ditch 30</title><rect x="162" y="1758" width="84" height="38" rx="3"/><text x="204" y="1782">32</text></g>
-<g id="unit-33" class="node deposit" data-type="deposit"><title>33: Natural gravel</title><rect x="162" y="2142" width="84" height="38" rx="3"/><text x="204" y="2166">33</text></g>
-<g id="unit-35" class="node deposit" data-type="deposit"><title>35: Yard surface outside the building</title><rect x="158" y="1566" width="84" height="38" rx="3"/><text x="200" y="1590">35</text></g>
+<g id="unit-1" class="node deposit" data-type="deposit"><title>1: Modern topsoil</title><rect x="182" y="30" width="84" height="38" rx="3"/><text x="224" y="54">1</text></g>
+<g id="unit-2" class="node deposit" data-type="deposit"><title>2: Modern demolition rubble</title><rect x="182" y="126" width="84" height="38" rx="3"/><text x="224" y="150">2</text></g>
+<g id="unit-3" class="node interface" data-type="interface"><title>3: Modern service trench</title><rect x="182" y="318" width="84" height="38" rx="19"/><text x="224" y="342">3</text></g>
+<g id="unit-4" class="node deposit" data-type="deposit"><title>4: Fill of service trench 3</title><rect x="182" y="222" width="84" height="38" rx="3"/><text x="224" y="246">4</text></g>
+<g id="unit-5" class="node deposit" data-type="deposit"><title>5: Medieval roof collapse</title><rect x="182" y="414" width="84" height="38" rx="3"/><text x="224" y="438">5</text></g>
+<g id="unit-6" class="node deposit" data-type="deposit"><title>6: Medieval beaten-earth floor</title><rect x="182" y="702" width="84" height="38" rx="3"/><text x="224" y="726">6</text></g>
+<g id="unit-7" class="node structure" data-type="structure"><title>7: Medieval wall M3</title><rect x="182" y="798" width="84" height="38" rx="3"/><text x="224" y="822">7</text></g>
+<g id="unit-8" class="node interface" data-type="interface"><title>8: Medieval rubbish pit</title><rect x="126" y="606" width="84" height="38" rx="19"/><text x="168" y="630">8</text></g>
+<g id="unit-9" class="node deposit" data-type="deposit"><title>9: Fill of rubbish pit 8</title><rect x="126" y="510" width="84" height="38" rx="3"/><text x="168" y="534">9</text></g>
+<g id="unit-10" class="node interface" data-type="interface"><title>10: Medieval posthole</title><rect x="238" y="606" width="84" height="38" rx="19"/><text x="280" y="630">10</text></g>
+<g id="unit-11" class="node deposit" data-type="deposit"><title>11: Fill of posthole 10</title><rect x="238" y="510" width="84" height="38" rx="3"/><text x="280" y="534">11</text></g>
+<g id="unit-13" class="node deposit" data-type="deposit"><title>13: Roman abandonment layer</title><rect x="182" y="990" width="84" height="38" rx="3"/><text x="224" y="1014">13</text></g>
+<g id="unit-14" class="node deposit" data-type="deposit"><title>14: Roman wall collapse</title><rect x="182" y="894" width="84" height="38" rx="3"/><text x="224" y="918">14</text></g>
+<g id="unit-15" class="node structure" data-type="structure"><title>15: Roman wall M1</title><rect x="50" y="1374" width="84" height="38" rx="3"/><text x="92" y="1398">15</text></g>
+<g id="unit-16" class="node structure" data-type="structure"><title>16: Roman wall M2</title><rect x="162" y="1374" width="84" height="38" rx="3"/><text x="204" y="1398">16</text></g>
+<g id="unit-17" class="node deposit" data-type="deposit"><title>17: Roman mortar floor</title><rect x="142" y="1278" width="84" height="38" rx="3"/><text x="184" y="1302">17</text></g>
+<g id="unit-18" class="node deposit" data-type="deposit"><title>18: Bedding of the mortar floor</title><rect x="274" y="1374" width="84" height="38" rx="3"/><text x="316" y="1398">18</text></g>
+<g id="unit-19" class="node interface" data-type="interface"><title>19: Foundation trench of M1</title><rect x="30" y="1566" width="84" height="38" rx="19"/><text x="72" y="1590">19</text></g>
+<g id="unit-20" class="node deposit" data-type="deposit"><title>20: Fill of foundation trench 19</title><rect x="86" y="1470" width="84" height="38" rx="3"/><text x="128" y="1494">20</text></g>
+<g id="unit-21" class="node interface" data-type="interface"><title>21: Foundation trench of M2</title><rect x="254" y="1566" width="84" height="38" rx="19"/><text x="296" y="1590">21</text></g>
+<g id="unit-22" class="node deposit" data-type="deposit"><title>22: Fill of foundation trench 21</title><rect x="198" y="1470" width="84" height="38" rx="3"/><text x="240" y="1494">22</text></g>
+<g id="unit-23-34" class="node deposit" data-type="deposit"><title>23: Occupation layer in room A; 34: Occupation layer in room A (seen in section)</title><rect x="70" y="1086" width="84" height="38" rx="3"/><text x="112" y="1110">23 = 34</text></g>
+<g id="unit-24" class="node deposit" data-type="deposit"><title>24: Occupation layer in room B</title><rect x="294" y="1086" width="84" height="38" rx="3"/><text x="336" y="1110">24</text></g>
+<g id="unit-25" class="node deposit" data-type="deposit"><title>25: Roman levelling layer</title><rect x="182" y="1662" width="84" height="38" rx="3"/><text x="224" y="1686">25</text></g>
+<g id="unit-26" class="node interface" data-type="interface"><title>26: Roman storage pit</title><rect x="218" y="1182" width="84" height="38" rx="19"/><text x="260" y="1206">26</text></g>
+<g id="unit-27" class="node deposit" data-type="deposit"><title>27: Fill of storage pit 26</title><rect x="182" y="1086" width="84" height="38" rx="3"/><text x="224" y="1110">27</text></g>
+<g id="unit-28" class="node structure" data-type="structure"><title>28: Roman hearth in room A</title><rect x="106" y="1182" width="84" height="38" rx="3"/><text x="148" y="1206">28</text></g>
+<g id="unit-29" class="node deposit" data-type="deposit"><title>29: Buried soil</title><rect x="182" y="2046" width="84" height="38" rx="3"/><text x="224" y="2070">29</text></g>
+<g id="unit-30" class="node interface" data-type="interface"><title>30: Iron Age ditch</title><rect x="182" y="1950" width="84" height="38" rx="19"/><text x="224" y="1974">30</text></g>
+<g id="unit-31" class="node deposit" data-type="deposit"><title>31: Primary fill of ditch 30</title><rect x="182" y="1854" width="84" height="38" rx="3"/><text x="224" y="1878">31</text></g>
+<g id="unit-32" class="node deposit" data-type="deposit"><title>32: Secondary fill of ditch 30</title><rect x="182" y="1758" width="84" height="38" rx="3"/><text x="224" y="1782">32</text></g>
+<g id="unit-33" class="node deposit" data-type="deposit"><title>33: Natural gravel</title><rect x="182" y="2142" width="84" height="38" rx="3"/><text x="224" y="2166">33</text></g>
+<g id="unit-35" class="node deposit" data-type="deposit"><title>35: Yard surface outside the building</title><rect x="142" y="1566" width="84" height="38" rx="3"/><text x="184" y="1590">35</text></g>
 </g>
 </svg>

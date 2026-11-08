@@ -1,0 +1,29 @@
+unit_id,unit_type,subtype,description
+A1,deposit,soil,Cemetery soil
+A2,interface,grave,Grave cut
+A3,deposit,backfill,Backfill of the grave
+A4,structure,coffin,Decayed wooden coffin
+A5,deposit,burial,Skeleton and body stain
+A6,deposit,turf,Modern turf
+A7,interface,burrow,Animal burrow through the backfill
+A8,deposit,fill,Fill of burrow A7
+B1a,deposit,floor,Floor layer (northern half)
+B1b,deposit,floor,Floor layer (southern half)
+B2,deposit,collapse,Collapse over the northern half
+B3,interface,pit,Pit cut into the southern half
+B4,deposit,fill,Fill of pit B3
+B5,deposit,natural,Natural clay
+C1,deposit,topsoil,Topsoil in trench 1
+C2,deposit,floor,Floor in trench 1
+C3,deposit,natural,Natural gravel in trench 1
+D1,deposit,topsoil,Topsoil in trench 2
+D2,deposit,floor,Floor in trench 2
+D3,deposit,levelling,Levelling in trench 2
+D4,deposit,natural,Natural gravel in trench 2
+W1,structure,wall,Original wall
+W2,structure,repair,Repair rebuilt on the wall stump
+W3,structure,wall,Perpendicular wall bonded to W1
+W4,interface,opening,Doorway cut through the wall
+W5,deposit,blocking,Blocking of the doorway
+W6,deposit,plaster,Plaster over the perpendicular wall
+W7,virtual,reconstruction,Missing upper courses (reconstructed)

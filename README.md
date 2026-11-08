@@ -62,7 +62,7 @@ warning R15  units.csv:7          Unit 6 has no relations
 7 errors, 2 warnings, 0 notes
 ```
 
-Implemented: R01–R06 and R10–R16 (duplicates, dangling references, vocabulary, allowed unit types, cycles, `same_as` conflicts, unfilled cuts, orphans, transitive redundancy). Use `--json` for machine output.
+Implemented: R01–R06, R10–R16 and R18 (duplicates, dangling references, vocabulary, allowed unit types, cycles, `same_as` conflicts, unfilled cuts, orphans, transitive redundancy). Use `--json` for machine output.
 
 Cycles are highlighted in red in the SVG:
 
@@ -73,6 +73,12 @@ Cycles are highlighted in red in the SVG:
 [`examples/complex`](examples/complex) is a 34-unit sequence (Iron Age ditch, Roman building, medieval reoccupation, modern disturbance) using every relation type: fills and cuts, abutting walls, a bonded corner, a doubtful `same_as` between two sectors, and a `later_than` link without physical contact. Dashed and dotted lines mark probable and doubtful relations; edges spanning several levels are routed around intermediate units.
 
 ![Harris matrix of examples/complex](docs/img/complex.svg)
+
+### Awkward cases
+
+[`examples/bizarre`](examples/bizarre) collects four situations that stress the model: a grave (cut, coffin, skeleton, backfill) disturbed by a burrow; one layer excavated as two units (`B1a = B1b`) with different neighbours; two trenches correlated by `same_as`, which makes the matrix reveal a redundant observation (R16); and a standing wall with bonded walls (drawn on the same row), a doorway cut and its blocking, a repair, and a reconstructed `virtual` unit.
+
+![Harris matrix of examples/bizarre](docs/img/bizarre.svg)
 
 ## SVG output
 

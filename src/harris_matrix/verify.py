@@ -21,6 +21,7 @@ RULES: dict[str, tuple[str, str]] = {
     "R11": ("error", "Direct contradiction between {a} and {b}"),
     "R12": ("error", "{a} {kind} {b}: both units are the same via 'same_as'"),
     "R13": ("warning", "'same_as' between different types: {a} ({ta}) and {b} ({tb})"),
+    "R18": ("error", "{a} and {b} are bonded (contemporary) but the sequence puts one after the other"),
     "R14": ("warning", "Cut {unit} has no recorded fill"),
     "R14b": ("warning", "Interface {unit} has a fill but cuts nothing"),
     "R15": ("warning", "Unit {unit} has no relations"),
@@ -104,6 +105,18 @@ def _alternative_path(edges: dict[str, set[str]], origin: str, target: str, skip
     return None
 
 
+def _reaches(edges: dict[str, set[str]], origin: str, target: str) -> bool:
+    seen, stack = set(), [origin]
+    while stack:
+        n = stack.pop()
+        if n == target:
+            return True
+        if n not in seen:
+            seen.add(n)
+            stack.extend(edges.get(n, ()))
+    return False
+
+
 def verify(project: Project) -> list[Issue]:
     """Run all checks and return the issues, errors first."""
     out: list[Issue] = []
@@ -159,6 +172,12 @@ def verify(project: Project) -> list[Issue]:
             report("R11", None, "relations.csv", a=cycle[0], b=cycle[1])
         else:
             report("R10", None, "relations.csv", path=" -> ".join(cycle))
+
+    for r in valid:
+        if r.type == "bonded_to":
+            a, b = rep[r.from_unit], rep[r.to_unit]
+            if a != b and (_reaches(edges, a, b) or _reaches(edges, b, a)):
+                report("R18", r.row, "relations.csv", a=r.from_unit, b=r.to_unit)
 
     related = {x for r in valid for x in (r.from_unit, r.to_unit)}
     for u in project.units:

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 816 770" width="816" height="770">
+<style>.node rect { fill: #fff; stroke: #222; stroke-width: 1.5 }
+.node.interface rect { fill: #eef3fb }
+.node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
+.node.virtual rect { stroke-dasharray: 4 3 }
+.node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.edge { stroke: #222; stroke-width: 1.5; fill: none }
+.error rect { stroke: #c00; stroke-width: 3 }
+.edge.error { stroke: #c00 }</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<g id="edges">
+<polyline class="edge" data-certainty="certain" points="408,644 408,702"/>
+<polyline class="edge" data-certainty="certain" points="296,356 408,414"/>
+<polyline class="edge" data-certainty="certain" points="408,452 408,510"/>
+<polyline class="edge" data-certainty="certain" points="408,548 408,606"/>
+<polyline class="edge" data-certainty="certain" points="128,68 72,126"/>
+<polyline class="edge" data-certainty="certain" points="176,260 296,318"/>
+<polyline class="edge" data-certainty="certain" points="72,164 176,222"/>
+<polyline class="edge" data-certainty="certain" points="296,260 408,318"/>
+<polyline class="edge" data-certainty="certain" points="184,164 296,222"/>
+<polyline class="edge" data-certainty="certain" points="296,164 296,222"/>
+<polyline class="edge" data-certainty="certain" points="240,68 296,126"/>
+<polyline class="edge" data-certainty="certain" points="352,68 408,126"/>
+<polyline class="edge" data-certainty="certain" points="408,164 416,222"/>
+<polyline class="edge" data-certainty="certain" points="464,68 408,126"/>
+<polyline class="edge" data-certainty="certain" points="416,260 520,318"/>
+<polyline class="edge" data-certainty="certain" points="520,164 528,222"/>
+<polyline class="edge" data-certainty="certain" points="632,164 528,222"/>
+<polyline class="edge" data-certainty="certain" points="688,68 632,126"/>
+<polyline class="edge" data-certainty="certain" points="744,164 640,222"/>
+<polyline class="edge" data-certainty="doubtful" points="576,68 520,126" stroke-dasharray="2 4"/>
+</g>
+<g id="units">
+<g id="unit-A1" class="node deposit" data-type="deposit"><title>A1: Cemetery soil</title><rect x="366" y="702" width="84" height="38" rx="3"/><text x="408" y="726">A1</text></g>
+<g id="unit-A2" class="node interface" data-type="interface"><title>A2: Grave cut</title><rect x="366" y="606" width="84" height="38" rx="19"/><text x="408" y="630">A2</text></g>
+<g id="unit-A3" class="node deposit" data-type="deposit"><title>A3: Backfill of the grave</title><rect x="254" y="318" width="84" height="38" rx="3"/><text x="296" y="342">A3</text></g>
+<g id="unit-A4" class="node structure" data-type="structure"><title>A4: Decayed wooden coffin</title><rect x="366" y="414" width="84" height="38" rx="3"/><text x="408" y="438">A4</text></g>
+<g id="unit-A5" class="node deposit" data-type="deposit"><title>A5: Skeleton and body stain</title><rect x="366" y="510" width="84" height="38" rx="3"/><text x="408" y="534">A5</text></g>
+<g id="unit-A6" class="node deposit" data-type="deposit"><title>A6: Modern turf</title><rect x="86" y="30" width="84" height="38" rx="3"/><text x="128" y="54">A6</text></g>
+<g id="unit-A7" class="node interface" data-type="interface"><title>A7: Animal burrow through the backfill</title><rect x="134" y="222" width="84" height="38" rx="19"/><text x="176" y="246">A7</text></g>
+<g id="unit-A8" class="node deposit" data-type="deposit"><title>A8: Fill of burrow A7</title><rect x="30" y="126" width="84" height="38" rx="3"/><text x="72" y="150">A8</text></g>
+<g id="unit-B1a-B1b" class="node deposit" data-type="deposit"><title>B1a: Floor layer (northern half); B1b: Floor layer (southern half)</title><rect x="246" y="222" width="101" height="38" rx="3"/><text x="296" y="246">B1a = B1b</text></g>
+<g id="unit-B2" class="node deposit" data-type="deposit"><title>B2: Collapse over the northern half</title><rect x="142" y="126" width="84" height="38" rx="3"/><text x="184" y="150">B2</text></g>
+<g id="unit-B3" class="node interface" data-type="interface"><title>B3: Pit cut into the southern half</title><rect x="254" y="126" width="84" height="38" rx="19"/><text x="296" y="150">B3</text></g>
+<g id="unit-B4" class="node deposit" data-type="deposit"><title>B4: Fill of pit B3</title><rect x="198" y="30" width="84" height="38" rx="3"/><text x="240" y="54">B4</text></g>
+<g id="unit-B5" class="node deposit" data-type="deposit"><title>B5: Natural clay</title><rect x="366" y="318" width="84" height="38" rx="3"/><text x="408" y="342">B5</text></g>
+<g id="unit-C1" class="node deposit" data-type="deposit"><title>C1: Topsoil in trench 1</title><rect x="310" y="30" width="84" height="38" rx="3"/><text x="352" y="54">C1</text></g>
+<g id="unit-C2-D2" class="node deposit" data-type="deposit"><title>C2: Floor in trench 1; D2: Floor in trench 2</title><rect x="366" y="126" width="84" height="38" rx="3"/><text x="408" y="150">C2 = D2</text></g>
+<g id="unit-C3-D4" class="node deposit" data-type="deposit"><title>C3: Natural gravel in trench 1; D4: Natural gravel in trench 2</title><rect x="478" y="318" width="84" height="38" rx="3"/><text x="520" y="342">C3 = D4</text></g>
+<g id="unit-D1" class="node deposit" data-type="deposit"><title>D1: Topsoil in trench 2</title><rect x="422" y="30" width="84" height="38" rx="3"/><text x="464" y="54">D1</text></g>
+<g id="unit-D3" class="node deposit" data-type="deposit"><title>D3: Levelling in trench 2</title><rect x="374" y="222" width="84" height="38" rx="3"/><text x="416" y="246">D3</text></g>
+<g id="unit-W1" class="node structure" data-type="structure"><title>W1: Original wall</title><rect x="486" y="222" width="84" height="38" rx="3"/><text x="528" y="246">W1</text></g>
+<g id="unit-W2" class="node structure" data-type="structure"><title>W2: Repair rebuilt on the wall stump</title><rect x="478" y="126" width="84" height="38" rx="3"/><text x="520" y="150">W2</text></g>
+<g id="unit-W3" class="node structure" data-type="structure"><title>W3: Perpendicular wall bonded to W1</title><rect x="598" y="222" width="84" height="38" rx="3"/><text x="640" y="246">W3</text></g>
+<g id="unit-W4" class="node interface" data-type="interface"><title>W4: Doorway cut through the wall</title><rect x="590" y="126" width="84" height="38" rx="19"/><text x="632" y="150">W4</text></g>
+<g id="unit-W5" class="node deposit" data-type="deposit"><title>W5: Blocking of the doorway</title><rect x="646" y="30" width="84" height="38" rx="3"/><text x="688" y="54">W5</text></g>
+<g id="unit-W6" class="node deposit" data-type="deposit"><title>W6: Plaster over the perpendicular wall</title><rect x="702" y="126" width="84" height="38" rx="3"/><text x="744" y="150">W6</text></g>
+<g id="unit-W7" class="node virtual" data-type="virtual"><title>W7: Missing upper courses (reconstructed)</title><rect x="534" y="30" width="84" height="38" rx="3"/><text x="576" y="54">W7</text></g>
+</g>
+</svg>
