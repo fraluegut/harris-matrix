@@ -1,7 +1,8 @@
 # Working instructions
 
 - Every relatively small, self-contained change ends with a commit and, when the `origin` remote exists, a push to `origin/master`.
-- Before pushing, check that the change builds or passes the relevant verification and that no secrets are included.
+- Before pushing, run `python3 scripts/check.py` (also run by the pre-commit hook and CI; see `docs/review.md`). It covers tests, examples, links, language, secrets and generated images.
+- The user's goal is to learn how to build a library with good practices: when adding tooling or conventions, briefly explain why it is good practice.
 - Do not publish to PyPI unless the user explicitly asks.
 
 # Project

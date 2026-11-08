@@ -4,6 +4,7 @@
 .node.structure rect { fill: #f4ede4; stroke-width: 2.5 }
 .node.virtual rect { stroke-dasharray: 4 3 }
 .node text { font: 13px sans-serif; fill: #111; text-anchor: middle }
+.node text.extra { font-size: 11px; fill: #555 }
 .edge { stroke: #222; stroke-width: 1.5; fill: none }
 .error rect { stroke: #c00; stroke-width: 3 }
 .edge.error { stroke: #c00 }</style>

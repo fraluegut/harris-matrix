@@ -121,6 +121,9 @@ Projects can also be built in code: `Project(units=[Unit("1", "deposit")], relat
 pip install -e ".[dev]" && pytest
 # or, with nothing installed:
 PYTHONPATH=src python3 -m unittest discover -s tests
+
+git config core.hooksPath .githooks   # run the project review before every commit
+python3 scripts/check.py              # or run it by hand; see docs/review.md
 ```
 
 ## License

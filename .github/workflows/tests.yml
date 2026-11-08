@@ -13,6 +13,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: pip install -e ".[dev]"
       - run: pytest
+      - run: python scripts/check.py
+        if: matrix.python == '3.12'
   package:
     runs-on: ubuntu-latest
     steps:
