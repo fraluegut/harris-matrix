@@ -134,4 +134,3 @@ To be designed: on elevations and walls the relation is observed on a wall face,
 - Wide input format (one row per unit with `covers`, `cuts`... columns holding `;`-separated lists) as a convenience over `relations.csv`.
 - Nanopublications: optional export of relations and datings (certainty and source as provenance)? Requires stable identifiers (URIs) and a decision on what is published.
 - Bibliography: check against the original sources before v1.
-- Licence.

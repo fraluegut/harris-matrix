@@ -48,4 +48,4 @@ PYTHONPATH=src python3 -m unittest discover -s tests
 
 ## Licencia
 
-Pendiente de decidir antes de publicar.
+MIT, ver [LICENSE](LICENSE).
