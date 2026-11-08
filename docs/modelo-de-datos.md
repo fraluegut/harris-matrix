@@ -131,3 +131,4 @@ Pendiente de diseñar: en alzados y muros la relación se observa sobre un param
 - SVG: ¿solo salida o importar cambios?
 - Bibliografía: contrastar con las fuentes originales antes de la v1.
 - Licencia.
+- Nanopublicaciones: ¿exportación opcional de relaciones y dataciones (con certeza y fuente como procedencia)? Requiere identificadores estables (URI) y decidir qué se publica.

@@ -1,0 +1,11 @@
+ue_origen,tipo,ue_destino,certeza
+1,cubre,2,segura
+3,corta,2,segura
+1,cubre,99,segura
+4,cubre,5,segura
+5,cubre,4,segura
+6,corta,1,segura
+2,toca,1,segura
+2,cubre,2,segura
+2,cubre,7,segura
+7,cubre,1,segura

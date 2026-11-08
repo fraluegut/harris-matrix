@@ -1,0 +1,13 @@
+ue_id,tipo_unidad,subtipo,descripcion
+1,deposito,humus,Humus superficial
+2,deposito,derrumbe,Derrumbe de tejas
+3,estructura,muro,Alzado del muro M1
+4,interfaz,fosa,Fosa de expolio
+5,deposito,relleno,Relleno de la fosa de expolio
+6,deposito,suelo,Suelo de mortero
+7,deposito,preparacion,Preparación del suelo
+8,interfaz,zanja,Zanja de cimentación de M1
+9,deposito,relleno,Relleno de la zanja de M1
+10,deposito,ocupacion,Nivel de ocupación (sector A)
+11,deposito,natural,Arcilla natural estéril
+12,deposito,ocupacion,Nivel de ocupación (sector B)
