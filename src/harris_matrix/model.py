@@ -55,8 +55,8 @@ class Project:
 
 
 def natural_key(text: str) -> list:
-    """Natural sort key: '2' < '10' < '10b'."""
-    return [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", text) if t]
+    """Natural sort key: '2' < '10' < '10b' (numbers before text, never a type clash)."""
+    return [(0, int(t), "") if t.isdigit() else (1, 0, t) for t in re.split(r"(\d+)", text) if t]
 
 
 def _read(path: Path, required: tuple[str, ...]) -> list[tuple[int, dict]]:

@@ -38,6 +38,12 @@ def _levels(nodes, edges):
 
     for n in nodes:
         depth(n)
+    # Units with nothing above them sit just above their nearest successor
+    # instead of floating to the top of the matrix.
+    has_parent = {b for a in nodes for b in usable[a]}
+    for n in nodes:
+        if n not in has_parent and usable[n]:
+            level[n] = min(level[s] for s in usable[n]) - 1
     return level, broken, {n for c in cycles for n in c}
 
 
@@ -64,14 +70,31 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
     drawn = edges if broken else _reduce(edges)
 
     members = {n: [u for u in project.units if rep[u.unit_id] == n] for n in nodes}
-    label = {n: " = ".join(sorted((u.unit_id for u in members[n]), key=natural_key)) for n in nodes}
+    label = {n: " = ".join(sorted({u.unit_id for u in members[n]}, key=natural_key)) for n in nodes}
     kind = {n: members[n][0].unit_type for n in nodes}
     width = {n: max(WIDTH, 9 * len(label[n]) + 20) for n in nodes}
 
+    # Edges spanning several levels get invisible waypoints in the intermediate
+    # rows, so they take part in the ordering and are routed around other nodes.
+    chains: dict[tuple[str, str], list[str]] = {}
+    for a in nodes:
+        for b in sorted(drawn[a], key=natural_key):
+            chain = [a]
+            for k in range(1, level[b] - level[a]):
+                waypoint = f"~{a}>{b}:{k}"
+                level[waypoint], width[waypoint] = level[a] + k, 12
+                chain.append(waypoint)
+            chains[(a, b)] = chain + [b]
     rows: dict[int, list[str]] = {}
-    for n in nodes:
+    for n in level:
         rows.setdefault(level[n], []).append(n)
-    neighbours = {n: [m for m in nodes if m in drawn[n] or n in drawn[m]] for n in nodes}
+    for row in rows.values():
+        row.sort(key=natural_key)
+    neighbours: dict[str, list[str]] = {n: [] for n in level}
+    for chain in chains.values():
+        for u, v in zip(chain, chain[1:]):
+            neighbours[u].append(v)
+            neighbours[v].append(u)
     order: dict[str, float] = {}
     for row in rows.values():
         for i, n in enumerate(row):
@@ -112,22 +135,23 @@ def render_svg(project: Project, highlight_errors: bool = True) -> str:
         '<rect width="100%" height="100%" fill="#fff"/>',
         '<g id="edges">',
     ]
-    for a in nodes:
-        for b in sorted(drawn[a], key=natural_key):
-            (x1, y1), (x2, y2) = xy[a], xy[b]
-            certainty = name[strength.get((a, b), 3)]
-            bad = highlight_errors and (a, b) in broken
-            dash = f' stroke-dasharray="{DASH[certainty]}"' if DASH[certainty] else ""
-            out.append(
-                f'<line class="edge{" error" if bad else ""}" data-certainty="{certainty}" '
-                f'x1="{x1:.0f}" y1="{y1 + HEIGHT / 2:.0f}" x2="{x2:.0f}" y2="{y2 - HEIGHT / 2:.0f}"{dash}/>'
-            )
+    for (a, b), chain in chains.items():
+        points = [(xy[a][0], xy[a][1] + HEIGHT / 2)]
+        points += [xy[w] for w in chain[1:-1]]
+        points.append((xy[b][0], xy[b][1] - HEIGHT / 2))
+        certainty = name[strength.get((a, b), 3)]
+        bad = highlight_errors and (a, b) in broken
+        dash = f' stroke-dasharray="{DASH[certainty]}"' if DASH[certainty] else ""
+        out.append(
+            f'<polyline class="edge{" error" if bad else ""}" data-certainty="{certainty}" '
+            f'points="{" ".join(f"{x:.0f},{y:.0f}" for x, y in points)}"{dash}/>'
+        )
     out.append("</g>")
     out.append('<g id="units">')
     for n in nodes:
         x, y = xy[n]
         classes = f"node {kind[n]}" + (" error" if highlight_errors and n in in_cycle else "")
-        ident = "unit-" + "-".join(u.unit_id.replace(" ", "_") for u in members[n])
+        ident = "unit-" + "-".join(label[n].replace(" = ", "-").split()).replace(" ", "_")
         title = "; ".join(f"{u.unit_id}: {u.description}" for u in members[n] if u.description)
         out.append(
             f'<g id={quoteattr(ident)} class="{classes}" data-type="{kind[n]}">'

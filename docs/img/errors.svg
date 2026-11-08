@@ -9,17 +9,17 @@
 .edge.error { stroke: #c00 }</style>
 <rect width="100%" height="100%" fill="#fff"/>
 <g id="edges">
-<line class="edge error" data-certainty="certain" x1="240" y1="164" x2="352" y2="126"/>
-<line class="edge error" data-certainty="certain" x1="352" y1="164" x2="184" y2="30"/>
-<line class="edge" data-certainty="certain" x1="296" y1="68" x2="352" y2="126"/>
-<line class="edge error" data-certainty="certain" x1="408" y1="68" x2="520" y2="30"/>
-<line class="edge error" data-certainty="certain" x1="520" y1="68" x2="408" y2="30"/>
-<line class="edge" data-certainty="certain" x1="72" y1="68" x2="240" y2="126"/>
-<line class="edge error" data-certainty="certain" x1="184" y1="68" x2="240" y2="126"/>
+<polyline class="edge error" data-certainty="certain" points="240,164 352,126"/>
+<polyline class="edge error" data-certainty="certain" points="352,164 184,30"/>
+<polyline class="edge" data-certainty="certain" points="296,68 352,126"/>
+<polyline class="edge error" data-certainty="certain" points="408,68 520,30"/>
+<polyline class="edge error" data-certainty="certain" points="520,68 408,30"/>
+<polyline class="edge" data-certainty="certain" points="72,68 240,126"/>
+<polyline class="edge error" data-certainty="certain" points="184,68 240,126"/>
 </g>
 <g id="units">
 <g id="unit-1" class="node deposit error" data-type="deposit"><title>1: Topsoil</title><rect x="198" y="126" width="84" height="38" rx="3"/><text x="240" y="150">1</text></g>
-<g id="unit-2-2" class="node deposit error" data-type="deposit"><title>2: Fill; 2: Duplicate</title><rect x="310" y="126" width="84" height="38" rx="3"/><text x="352" y="150">2 = 2</text></g>
+<g id="unit-2" class="node deposit error" data-type="deposit"><title>2: Fill; 2: Duplicate</title><rect x="310" y="126" width="84" height="38" rx="3"/><text x="352" y="150">2</text></g>
 <g id="unit-3" class="node interface" data-type="interface"><title>3: Pit without fill</title><rect x="254" y="30" width="84" height="38" rx="19"/><text x="296" y="54">3</text></g>
 <g id="unit-4" class="node deposit error" data-type="deposit"><title>4: Layer</title><rect x="366" y="30" width="84" height="38" rx="3"/><text x="408" y="54">4</text></g>
 <g id="unit-5" class="node deposit error" data-type="deposit"><title>5: Layer</title><rect x="478" y="30" width="84" height="38" rx="3"/><text x="520" y="54">5</text></g>

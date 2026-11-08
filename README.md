@@ -68,6 +68,12 @@ Cycles are highlighted in red in the SVG:
 
 ![Matrix with a cycle highlighted](docs/img/errors.svg)
 
+## A larger example
+
+[`examples/complex`](examples/complex) is a 34-unit sequence (Iron Age ditch, Roman building, medieval reoccupation, modern disturbance) using every relation type: fills and cuts, abutting walls, a bonded corner, a doubtful `same_as` between two sectors, and a `later_than` link without physical contact. Dashed and dotted lines mark probable and doubtful relations; edges spanning several levels are routed around intermediate units.
+
+![Harris matrix of examples/complex](docs/img/complex.svg)
+
 ## SVG output
 
 Editable in Inkscape or Illustrator: one `<g id="unit-1045" data-type="…">` per unit (units joined by `same_as` share a node, e.g. `10 = 12`); rectangles for deposits, rounded for interfaces, thick for structures; styles embedded.
@@ -89,7 +95,6 @@ Projects can also be built in code: `Project(units=[Unit("1", "deposit")], relat
 - Dates, phases and propagation rules (R30–R34); spatial checks (R20–R23)
 - Wide input format (one row per unit) and standing-buildings vocabulary
 - DOT/GraphML export; [hmdp](https://www.iosa.it/specs/harris-matrix-data-package/) import/export
-- Better routing of edges spanning several levels
 - Optional nanopublication export
 
 ## Development

@@ -25,6 +25,9 @@ class VerifyTest(unittest.TestCase):
         expected = {"R01", "R02", "R03", "R04", "R05", "R10", "R11", "R14", "R15"}
         self.assertTrue(expected <= codes("with-errors"))
 
+    def test_complex_example_is_clean(self):
+        self.assertEqual(verify(load_project(EXAMPLES / "complex")), [])
+
     def test_transitive_redundancy(self):
         with tempfile.TemporaryDirectory() as d:
             (Path(d) / "units.csv").write_text("unit_id,unit_type\n1,deposit\n2,deposit\n3,deposit\n")

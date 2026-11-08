@@ -1,0 +1,35 @@
+unit_id,unit_type,subtype,description
+1,deposit,topsoil,Modern topsoil
+2,deposit,rubble,Modern demolition rubble
+3,interface,trench,Modern service trench
+4,deposit,fill,Fill of service trench 3
+5,deposit,collapse,Medieval roof collapse
+6,deposit,floor,Medieval beaten-earth floor
+7,structure,wall,Medieval wall M3
+8,interface,pit,Medieval rubbish pit
+9,deposit,fill,Fill of rubbish pit 8
+10,interface,posthole,Medieval posthole
+11,deposit,fill,Fill of posthole 10
+13,deposit,abandonment,Roman abandonment layer
+14,deposit,collapse,Roman wall collapse
+15,structure,wall,Roman wall M1
+16,structure,wall,Roman wall M2
+17,deposit,floor,Roman mortar floor
+18,deposit,bedding,Bedding of the mortar floor
+19,interface,trench,Foundation trench of M1
+20,deposit,fill,Fill of foundation trench 19
+21,interface,trench,Foundation trench of M2
+22,deposit,fill,Fill of foundation trench 21
+23,deposit,occupation,Occupation layer in room A
+24,deposit,occupation,Occupation layer in room B
+25,deposit,levelling,Roman levelling layer
+26,interface,pit,Roman storage pit
+27,deposit,fill,Fill of storage pit 26
+28,structure,hearth,Roman hearth in room A
+29,deposit,buried_soil,Buried soil
+30,interface,ditch,Iron Age ditch
+31,deposit,fill,Primary fill of ditch 30
+32,deposit,fill,Secondary fill of ditch 30
+33,deposit,natural,Natural gravel
+34,deposit,occupation,Occupation layer in room A (seen in section)
+35,deposit,surface,Yard surface outside the building
